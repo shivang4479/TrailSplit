@@ -8,17 +8,16 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 
-class Signup : AppCompatActivity() {
+class Forgetpassword : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_signup)
+        setContentView(R.layout.activity_forgetpassword)
 
-        val login = findViewById<TextView>(R.id.signtolog)
-        login.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
+        val log=findViewById<TextView>(R.id.backtologin)
+        log.setOnClickListener{
+            val intent= Intent(this, MainActivity::class.java)
             startActivity(intent)
-            finish()
         }
 
     }

@@ -20,6 +20,12 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, Signup::class.java)
             startActivity(intent)
         }
+
+        val forgotbtn=findViewById<TextView>(R.id.fogetpassword)
+        forgotbtn.setOnClickListener {
+            val intent= Intent(this, Forgetpassword::class.java)
+            startActivity(intent)
+        }
     }
 
     }
