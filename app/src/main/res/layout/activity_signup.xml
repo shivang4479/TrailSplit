@@ -11,7 +11,7 @@
        android:id="@+id/loginheader"
        android:layout_width="match_parent"
        android:layout_height="210dp"
-       android:layout_marginTop="10dp"
+       android:layout_marginTop="80dp"
        android:scaleType="centerCrop"
        android:src="@drawable/login"
        app:layout_constraintTop_toTopOf="parent"
