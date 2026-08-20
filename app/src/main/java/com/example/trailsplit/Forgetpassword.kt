@@ -11,13 +11,14 @@ import androidx.core.view.WindowInsetsCompat
 class Forgetpassword : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
+
         setContentView(R.layout.activity_forgetpassword)
 
         val log=findViewById<TextView>(R.id.backtologin)
         log.setOnClickListener{
             val intent= Intent(this, MainActivity::class.java)
             startActivity(intent)
+            finish()
         }
 
     }
