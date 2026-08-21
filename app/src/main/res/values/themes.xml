@@ -6,4 +6,10 @@
     </style>
 
     <style name="Theme.TrailSplit" parent="Base.Theme.TrailSplit" />
+    <style name="Theme.TrailSplit.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+    <style name="Theme.TrailSplit.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="Theme.TrailSplit.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>
