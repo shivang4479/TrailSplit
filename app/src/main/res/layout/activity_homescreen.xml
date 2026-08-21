@@ -1,26 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Homescreen"
-    android:background="@color/white">
+    android:background="@color/white"
+    tools:context=".Homescreen">
+
+    <!-- Greeting -->
 
     <TextView
         android:id="@+id/greeting"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Hello 👋"
-        android:textSize="40dp"
-        android:layout_marginLeft="15dp"
+        android:textSize="40sp"
+        android:layout_marginStart="15dp"
         android:layout_marginTop="8dp"
         android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        />
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Notification -->
+
     <ImageButton
         android:id="@+id/notificationIcon"
         android:layout_width="55dp"
@@ -28,106 +34,129 @@
         android:src="@drawable/ic_notifications"
         android:background="@android:color/transparent"
         android:contentDescription="Notification"
-        app:tint="#008F5A"
         android:padding="10dp"
+        app:tint="#008F5A"
+        android:layout_marginEnd="15dp"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginRight="15dp"
+        app:layout_constraintEnd_toEndOf="parent" />
 
-        />
+    <!-- Current Trip -->
+
     <TextView
         android:id="@+id/trip_id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Current Trip"
-        android:textSize="25dp"
-       android:layout_marginTop="15dp"
+        android:textSize="25sp"
         android:textColor="@color/black"
+        android:layout_marginTop="15dp"
         app:layout_constraintTop_toBottomOf="@id/greeting"
-        app:layout_constraintStart_toStartOf="@id/greeting"
-        />
+        app:layout_constraintStart_toStartOf="@id/greeting" />
 
-
-  <!-- Card Code -->
+    <!-- Current Trip Card -->
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/currentTripCard"
-        android:layout_height="120dp"
         android:layout_width="0dp"
+        android:layout_height="120dp"
         android:layout_marginStart="15dp"
-        android:layout_marginTop="15dp"
         android:layout_marginEnd="15dp"
-        app:cardCornerRadius="18dp"
+        android:layout_marginTop="15dp"
         android:elevation="3dp"
+        app:cardCornerRadius="18dp"
         app:cardBackgroundColor="#DDF3ED"
         app:layout_constraintTop_toBottomOf="@id/trip_id"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        >
+        app:layout_constraintEnd_toEndOf="parent">
 
-        <!-- Card inside things-->
+    </com.google.android.material.card.MaterialCardView>
 
+    <!-- Expense Summary Card -->
 
-
-
-        ></com.google.android.material.card.MaterialCardView>
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/Expensesumaarycard"
-        android:layout_height="120dp"
         android:layout_width="0dp"
+        android:layout_height="120dp"
         android:layout_marginStart="15dp"
-        android:layout_marginTop="15dp"
         android:layout_marginEnd="15dp"
-        app:cardCornerRadius="18dp"
+        android:layout_marginTop="15dp"
         android:elevation="3dp"
+        app:cardCornerRadius="18dp"
         app:cardBackgroundColor="#DDF3ED"
         app:layout_constraintTop_toBottomOf="@id/currentTripCard"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- Recent Expenses Heading -->
+
+    <TextView
+        android:id="@+id/recentExpensesTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Recent Expenses"
+        android:textSize="21sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:layout_marginTop="20dp"
+        app:layout_constraintTop_toBottomOf="@id/Expensesumaarycard"
+        app:layout_constraintStart_toStartOf="@id/Expensesumaarycard" />
+
+    <!-- View All -->
+
+    <TextView
+        android:id="@+id/viewAll"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="View All"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:textColor="#008F5A"
+        android:padding="5dp"
+        app:layout_constraintTop_toTopOf="@id/recentExpensesTitle"
+        app:layout_constraintBottom_toBottomOf="@id/recentExpensesTitle"
+        app:layout_constraintEnd_toEndOf="@id/Expensesumaarycard" />
+
+    <!-- RecyclerView -->
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/expenserecycler"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        app:layout_constraintTop_toBottomOf="@id/recentExpensesTitle"
+        app:layout_constraintStart_toStartOf="@id/Expensesumaarycard"
+        app:layout_constraintEnd_toEndOf="@id/Expensesumaarycard"
+        app:layout_constraintBottom_toTopOf="@id/addExpenseButton" />
+
+    <!-- Add Expense Button -->
+
+    <Button
+        android:id="@+id/addExpenseButton"
+        android:layout_width="0dp"
+        android:layout_height="55dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="20dp"
+        android:text="Add Expense"
+        android:textSize="17sp"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:backgroundTint="#008F5A"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        >
+        app:layout_constraintBottom_toTopOf="@id/bottom_nav" />
 
-        <!-- Card inside things-->
-
-
-
-
-        ></com.google.android.material.card.MaterialCardView>
-<androidx.recyclerview.widget.RecyclerView
-    android:id="@+id/expenserecycler"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    app:layout_constraintTop_toBottomOf="@id/Expensesumaarycard"
-    app:layout_constraintStart_toStartOf="@id/Expensesumaarycard"
-    app:layout_constraintEnd_toEndOf="@id/Expensesumaarycard"
-    />
-
-
-
-
-
-
-
-
+    <!-- Bottom Navigation -->
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_nav"
         android:layout_width="match_parent"
         android:layout_height="80dp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:menu="@menu/bottom_nav_menu"
-
-
-        />
-
-
-
-
-
-
-
-
-
-
-
+        app:layout_constraintBottom_toBottomOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
