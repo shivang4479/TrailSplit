@@ -2,6 +2,7 @@ package com.example.trailsplit
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import android.widget.Button
@@ -24,6 +25,12 @@ class MainActivity : AppCompatActivity() {
         val forgotbtn=findViewById<TextView>(R.id.fogetpassword)
         forgotbtn.setOnClickListener {
             val intent= Intent(this, Forgetpassword::class.java)
+            startActivity(intent)
+        }
+
+        val loginbtn=findViewById<Button>(R.id.btn)
+        loginbtn.setOnClickListener {
+            val intent=Intent(this, Homescreen::class.java)
             startActivity(intent)
 
         }

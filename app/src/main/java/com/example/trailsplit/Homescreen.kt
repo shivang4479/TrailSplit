@@ -12,7 +12,7 @@ class Homescreen : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_homescreen)
-        val recyclerview = findViewById(R.id.expenserecycler)
+
 
 
 
