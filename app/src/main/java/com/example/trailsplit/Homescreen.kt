@@ -1,6 +1,7 @@
 package com.example.trailsplit
 
 import android.content.Intent
+import android.graphics.Insets.add
 import android.os.Bundle
 import android.widget.Button
 import android.widget.Toast
@@ -19,6 +20,29 @@ class Homescreen : AppCompatActivity() {
             val intent = Intent(this, AddExpenseActivity::class.java)
             startActivity(intent)
         }
+        val bottomnav=findViewById<BottomNavigationView>(R.id.bottom_nav)
+        bottomnav.setOnItemSelectedListener { item ->
+            when(item.itemId){
+                R.id.home_icon->{
+                    true
+                }
+                R.id.trip_icon->{
+                    true
+                }
+                R.id.add_icon->{
+                    startActivity(Intent(this, CreateTripscreen::class.java))
+                    true
+                }
+                R.id.sync_icon->{
+                    true
+                }
+                R.id.Profile_icon->{
+                    true
+                }
+                else -> false
+            }
+        }
+
 
          recyclerView = findViewById(R.id.expenserecycler)
 
