@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class Homescreen : AppCompatActivity() {
 
