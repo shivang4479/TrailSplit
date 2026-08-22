@@ -159,6 +159,9 @@
         app:menu="@menu/bottom_nav_menu"
         android:background="@android:color/transparent"
         app:labelVisibilityMode="labeled"
+        app:itemIconTint="@color/black"
+        app:itemTextColor="@color/black"
+        app:itemActiveIndicatorStyle="@android:color/transparent"
 
         app:layout_constraintBottom_toBottomOf="parent" />
 

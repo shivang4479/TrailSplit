@@ -3,20 +3,23 @@
     <item
         android:id="@+id/home_icon"
         android:icon="@drawable/home_ic"
+        android:iconTint="@color/black"
         android:title="Home"
+
         />
 
     <item
         android:id="@+id/trip_icon"
-
+        android:iconTint="@color/black"
         android:icon="@drawable/luggage_ic"
         android:title="Trip"
         />
 
     <item
         android:id="@+id/add_icon"
-        android:title="Add"
+        android:title="Create Trip"
         android:icon="@drawable/add_ic"
+        android:iconTint="@color/black"
 
         />
 
@@ -24,12 +27,14 @@
         android:id="@+id/sync_icon"
         android:title="Sync"
         android:icon="@drawable/sync_ic"
+        android:iconTint="@color/black"
 
         />
     <item
         android:id="@+id/Profile_icon"
         android:title="Profile"
         android:icon="@drawable/profile_ic"
+        android:iconTint="@color/black"
 
         />
 
