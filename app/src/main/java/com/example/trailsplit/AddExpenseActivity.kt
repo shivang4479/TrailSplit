@@ -23,6 +23,7 @@ class AddExpenseActivity : AppCompatActivity() {
 
         setContentView(R.layout.activity_add_expense)
 
+        // Connect XML views
         expenseNameInput = findViewById(R.id.expenseNameInput)
         expenseCostInput = findViewById(R.id.expenseCostInput)
         expenseDateInput = findViewById(R.id.expenseDateInput)
@@ -33,28 +34,35 @@ class AddExpenseActivity : AppCompatActivity() {
             showDatePicker()
         }
 
-        // Add Expense button
+        // Save Expense button
         saveExpenseButton.setOnClickListener {
 
             val name = expenseNameInput.text.toString().trim()
             val cost = expenseCostInput.text.toString().trim()
             val date = expenseDateInput.text.toString().trim()
 
+            // Validate expense name
             if (name.isEmpty()) {
                 expenseNameInput.error = "Enter expense name"
+                expenseNameInput.requestFocus()
                 return@setOnClickListener
             }
 
+            // Validate expense cost
             if (cost.isEmpty()) {
                 expenseCostInput.error = "Enter expense cost"
+                expenseCostInput.requestFocus()
                 return@setOnClickListener
             }
 
+            // Validate date
             if (date.isEmpty()) {
                 expenseDateInput.error = "Select expense date"
+                expenseDateInput.requestFocus()
                 return@setOnClickListener
             }
 
+            // Save expense
             saveExpense(name, cost, date)
 
             Toast.makeText(
@@ -63,7 +71,11 @@ class AddExpenseActivity : AppCompatActivity() {
                 Toast.LENGTH_SHORT
             ).show()
 
-            val intent = Intent(this, Homescreen::class.java)
+            // Go back to HomeScreen
+            val intent = Intent(
+                this,
+                Homescreen::class.java
+            )
 
             startActivity(intent)
 
@@ -102,24 +114,39 @@ class AddExpenseActivity : AppCompatActivity() {
         date: String
     ) {
 
-        val sharedPreferences =
-            getSharedPreferences("ExpenseData", MODE_PRIVATE)
+        val sharedPreferences = getSharedPreferences(
+            "ExpenseData",
+            MODE_PRIVATE
+        )
 
-        val oldData =
-            sharedPreferences.getString("expenses", "[]")
+        // Get previously saved expenses
+        val oldData = sharedPreferences.getString(
+            "expenses",
+            "[]"
+        )
 
-        val jsonArray = JSONArray(oldData)
+        val jsonArray = try {
+            JSONArray(oldData)
+        } catch (e: Exception) {
+            JSONArray()
+        }
 
+        // Create new expense object
         val expenseObject = JSONObject()
 
         expenseObject.put("name", name)
         expenseObject.put("cost", cost)
         expenseObject.put("date", date)
 
+        // Add new expense to list
         jsonArray.put(expenseObject)
 
+        // Save updated list
         sharedPreferences.edit()
-            .putString("expenses", jsonArray.toString())
+            .putString(
+                "expenses",
+                jsonArray.toString()
+            )
             .apply()
     }
 }
