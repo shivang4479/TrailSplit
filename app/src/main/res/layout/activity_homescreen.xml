@@ -157,7 +157,7 @@
         android:layout_width="match_parent"
         android:layout_height="80dp"
         app:menu="@menu/bottom_nav_menu"
-        android:background="@color/darkgray"
+        android:background="@color/lightgray"
 
         app:layout_constraintBottom_toBottomOf="parent" />
 
