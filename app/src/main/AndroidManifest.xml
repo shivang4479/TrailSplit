@@ -53,10 +53,15 @@
             android:theme="@style/Theme.TrailSplit.NoActionBar"
             tools:targetApi="24" />
         -->
+        <activity android:name=".AddExpenseActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize"/>
+
         <activity
             android:name=".CreateTripscreen"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
     </application>
+
 
 </manifest>

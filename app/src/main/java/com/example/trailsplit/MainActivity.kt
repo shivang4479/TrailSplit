@@ -34,11 +34,7 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
 
         }
-        val addexpense=findViewById<Button>(R.id.addExpenseButton)
-        addexpense.setOnClickListener {
-            val intent = Intent(this, AddExpenseActivity::class.java)
-            startActivity(intent)
-        }
+
 
     }
 
