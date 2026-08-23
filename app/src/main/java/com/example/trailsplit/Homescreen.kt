@@ -36,6 +36,7 @@ class Homescreen : AppCompatActivity() {
                     true
                 }
                 R.id.trip_icon->{
+                    startActivity(Intent(this, ReceiptOcrScreen::class.java))
                     true
                 }
                 R.id.add_icon->{
