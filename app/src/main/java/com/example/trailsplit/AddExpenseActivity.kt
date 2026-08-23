@@ -3,6 +3,8 @@ package com.example.trailsplit
 import android.app.DatePickerDialog
 import android.content.Intent
 import android.os.Bundle
+import android.widget.ArrayAdapter
+import android.widget.AutoCompleteTextView
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
@@ -34,6 +36,20 @@ class AddExpenseActivity : AppCompatActivity() {
             showDatePicker()
         }
 
+
+
+        // Category Section
+        val category = findViewById<AutoCompleteTextView>(R.id.dropdowncategory)
+        val categoryoptions= arrayOf(
+            "Food",
+            "Travel",
+            "Shopping",
+            "Bills",
+            "Entertainment",
+            "Other"
+        )
+        val adapter= ArrayAdapter(this,android.R.layout.simple_dropdown_item_1line,categoryoptions)
+        category.setAdapter(adapter)
         // Save Expense button
         saveExpenseButton.setOnClickListener {
 
