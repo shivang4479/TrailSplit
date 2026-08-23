@@ -7,6 +7,7 @@ import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import org.json.JSONArray
@@ -24,6 +25,12 @@ class AddExpenseActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_add_expense)
+
+        val addreceipt=findViewById<TextView>(R.id.addrecepit)
+        addreceipt.setOnClickListener {
+            val intent= Intent(this, ReceiptOcrScreen::class.java)
+            startActivity(intent)
+        }
 
         // Connect XML views
         expenseNameInput = findViewById(R.id.expenseNameInput)

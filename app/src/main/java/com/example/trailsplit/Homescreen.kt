@@ -36,7 +36,7 @@ class Homescreen : AppCompatActivity() {
                     true
                 }
                 R.id.trip_icon->{
-                    startActivity(Intent(this, ReceiptOcrScreen::class.java))
+
                     true
                 }
                 R.id.add_icon->{
@@ -47,6 +47,7 @@ class Homescreen : AppCompatActivity() {
                     true
                 }
                 R.id.Profile_icon->{
+                    startActivity(Intent(this, ProfileScreen::class.java))
                     true
                 }
                 else -> false
