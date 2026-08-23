@@ -51,15 +51,18 @@
    <EditText
        android:id="@+id/Name"
        android:layout_width="match_parent"
-       android:layout_height="wrap_content"
+       android:layout_height="60dp"
 
        android:hint="Name"
        android:textColorHint="@color/cardview_dark_background"
       android:paddingStart="25dp"
+       android:layout_marginTop="10dp"
+       android:background="@drawable/edittext_background"
 
 
        android:textSize="22sp"
-       android:paddingTop="20dp"
+       android:layout_marginEnd="18dp"
+       android:layout_marginStart="18dp"
        android:paddingLeft="15dp"
        app:layout_constraintTop_toBottomOf="@id/statement"
        app:layout_constraintStart_toStartOf="@id/statement"
@@ -68,14 +71,17 @@
    <EditText
        android:id="@+id/email"
        android:layout_width="match_parent"
-       android:layout_height="wrap_content"
+       android:layout_height="60dp"
+       android:background="@drawable/edittext_background"
 
        android:hint="Email"
       android:textColorHint="@color/cardview_dark_background"
        android:paddingStart="25dp"
+       android:layout_marginTop="15dp"
 
        android:textSize="22sp"
-       android:paddingTop="20dp"
+       android:layout_marginEnd="18dp"
+       android:layout_marginStart="18dp"
        android:paddingLeft="15dp"
        app:layout_constraintTop_toBottomOf="@id/Name"
        app:layout_constraintStart_toStartOf="@id/Name"
@@ -85,13 +91,16 @@
    <EditText
        android:id="@+id/password"
        android:layout_width="match_parent"
-       android:layout_height="wrap_content"
+       android:layout_height="60dp"
        android:textColorHint="@color/cardview_dark_background"
        android:hint="Password"
        android:paddingStart="25dp"
+       android:background="@drawable/edittext_background"
 
        android:textSize="22sp"
-       android:paddingTop="25dp"
+       android:layout_marginTop="15dp"
+       android:layout_marginEnd="18dp"
+       android:layout_marginStart="18dp"
        android:paddingLeft="15dp"
        app:layout_constraintTop_toBottomOf="@id/email"
        app:layout_constraintStart_toStartOf="@id/email"
@@ -100,14 +109,17 @@
    <EditText
        android:id="@+id/confirm_password"
        android:layout_width="match_parent"
-       android:layout_height="wrap_content"
+       android:layout_height="60dp"
+       android:background="@drawable/edittext_background"
 
        android:hint="Confirm password"
        android:paddingStart="25dp"
      android:textColorHint="@color/cardview_dark_background"
 
        android:textSize="22sp"
-       android:paddingTop="25dp"
+       android:layout_marginEnd="18dp"
+       android:layout_marginStart="18dp"
+       android:layout_marginTop="15dp"
        android:paddingLeft="15dp"
        app:layout_constraintTop_toBottomOf="@id/password"
        app:layout_constraintStart_toStartOf="@id/password"
