@@ -36,7 +36,7 @@ class Homescreen : AppCompatActivity() {
                     true
                 }
                 R.id.trip_icon->{
-
+                    startActivity(Intent(this, Trip ::class.java))
                     true
                 }
                 R.id.add_icon->{

@@ -14,6 +14,7 @@ import androidx.core.view.WindowInsetsCompat
 class ReceiptOcrScreen : AppCompatActivity() {
 
     private lateinit var receiptimage: ImageView
+    private var receiptBitmap : Bitmap? =null
 
     companion object {
         const val CAMERA_REQUEST = 100
@@ -31,6 +32,11 @@ class ReceiptOcrScreen : AppCompatActivity() {
             startActivityForResult(intent, CAMERA_REQUEST)
         }
         btnscan.setOnClickListener {
+           if (receiptBitmap != null){
+               val intent = Intent(this, Receiptdetails :: class.java)
+               intent.putExtra("receipt_image",receiptBitmap)
+               startActivity(intent)
+           }
 
         }
     }
@@ -39,6 +45,7 @@ class ReceiptOcrScreen : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == CAMERA_REQUEST && resultCode == RESULT_OK) {
             val photo = data?.extras?.get("data") as Bitmap
+            receiptBitmap  = photo
             receiptimage.setImageBitmap(photo)
         }
     }

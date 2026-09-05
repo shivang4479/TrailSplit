@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:background="@color/white"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Receiptdetails">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@color/white"
+            >
+            <!--Merchant-->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Merchant"
+                android:textSize="17sp"
+                android:textStyle="bold"
+                />
+
+            <TextView
+                android:id="@+id/restaurant"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Restaruant"
+                android:textSize="20sp"
+                android:layout_marginTop="5dp"
+                />
+
+            <!--Date-->
+            <TextView
+                android:id="@+id/date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Date"
+                android:textSize="17sp"
+                android:textStyle="bold"
+
+                />
+            <TextView
+                android:id="@+id/presentdate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="04-09-2026"
+                android:textSize="18sp"
+                android:layout_marginTop="5dp"/>
+
+            <!--Heading-->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="ITEMS"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:layout_marginTop="20dp"
+                />
+            
+       <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:elevation="3dp"
+                app:cardCornerRadius="8dp"
+           android:background="@color/white"
+                >
+           <TextView
+               android:id="@+id/receiptread"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:padding="14sp"
+               android:textSize="16dp"
+               android:text="Receipt"/>
+
+
+       </androidx.cardview.widget.CardView>
+        </LinearLayout>
+
+    </ScrollView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

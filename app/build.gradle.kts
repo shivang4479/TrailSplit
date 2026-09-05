@@ -1,5 +1,8 @@
 plugins {
     alias(libs.plugins.android.application)
+    // Add the Google services Gradle plugin
+    id("com.google.gms.google-services")
+
 }
 
 android {
@@ -53,5 +56,8 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     implementation("androidx.recyclerview:recyclerview")
     implementation("com.google.code.gson:gson:2.11.0")
+    implementation("org.osmdroid:osmdroid-android:6.1.20")
+    implementation("com.google.android.gms:play-services-mlkit-text-recognition:19.0.1")
+    implementation(platform("com.google.firebase:firebase-bom:34.18.0"))
 
 }
