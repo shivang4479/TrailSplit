@@ -44,6 +44,7 @@ class Homescreen : AppCompatActivity() {
                     true
                 }
                 R.id.sync_icon->{
+                    startActivity(Intent(this, Syncscreen::class.java))
                     true
                 }
                 R.id.Profile_icon->{
