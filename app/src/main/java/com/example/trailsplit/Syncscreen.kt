@@ -30,6 +30,7 @@ import com.google.android.gms.nearby.connection.EndpointDiscoveryCallback
 import com.google.android.gms.nearby.connection.PayloadCallback
 import com.google.android.gms.nearby.connection.Payload
 import com.google.android.gms.nearby.connection.PayloadTransferUpdate
+import java.security.Permission
 
 class Syncscreen : AppCompatActivity() {
 
@@ -50,8 +51,7 @@ class Syncscreen : AppCompatActivity() {
         setContentView(R.layout.activity_syncscreen)
 
         connectionsClient= Nearby.getConnectionsClient(this)
-        startAdvertising()
-        startDiscovery()
+        checkPermission()
 
 
         recyclerView = findViewById(R.id.rvDevices)
@@ -66,6 +66,39 @@ class Syncscreen : AppCompatActivity() {
         val pulseAnim = AnimationUtils.loadAnimation(this, R.anim.pulse)
         bluetoothIcon.startAnimation(pulseAnim)
     }
+
+    private fun checkPermission(){
+        if (android.os.Build.VERSION.SDK_INT>=android.os.Build.VERSION_CODES.S){
+            ActivityCompat.requestPermissions(this,arrayOf(Manifest.permission.BLUETOOTH_SCAN,
+                Manifest.permission.BLUETOOTH_ADVERTISE, Manifest.permission.BLUETOOTH_CONNECT),100)
+        }
+        else{
+            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)==
+                PackageManager.PERMISSION_GRANTED){
+                startDiscovery()
+                startAdvertising()
+            }else{
+                ActivityCompat.requestPermissions(this,arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),100)
+            }
+        }
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray,
+        deviceId: Int
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode==100 && grantResults.isNotEmpty()&& grantResults.all{it== PackageManager.PERMISSION_GRANTED }){
+            startDiscovery()
+            startAdvertising()
+        }
+        else {
+            Toast.makeText(this, "Please allow all Permission", Toast.LENGTH_SHORT).show()
+        }
+    }
+
 
     //call this function when syncing complete or stops
     private fun stopSyncing() {
@@ -100,12 +133,7 @@ class Syncscreen : AppCompatActivity() {
 
 
     private fun startAdvertising(){
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)!=
-            PackageManager.PERMISSION_GRANTED){
-            ActivityCompat.requestPermissions(this,arrayOf(Manifest.permission.ACCESS_FINE_LOCATION,
-                Manifest.permission.ACCESS_COARSE_LOCATION),100)
-            return
-        }
+        Toast.makeText(this," inside Advertising ", Toast.LENGTH_SHORT).show()
         connectionsClient.startAdvertising(DEVICE_NAME,SERVICE_ID,connectionLifecycleCallback,
             AdvertisingOptions.Builder().setStrategy(Strategy.P2P_CLUSTER).build()).addOnSuccessListener {
             Toast.makeText(this,"Advertising Started", Toast.LENGTH_SHORT).show()
@@ -116,12 +144,7 @@ class Syncscreen : AppCompatActivity() {
 
 
     private fun startDiscovery(){
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)!=
-            PackageManager.PERMISSION_GRANTED){
-            ActivityCompat.requestPermissions(this,arrayOf(Manifest.permission.ACCESS_FINE_LOCATION,
-                Manifest.permission.ACCESS_COARSE_LOCATION),101)
-            return
-        }
+        Toast.makeText(this,"inside discovery", Toast.LENGTH_SHORT).show()
         val option= DiscoveryOptions.Builder().setStrategy(Strategy.P2P_CLUSTER).build()
         connectionsClient.startDiscovery(SERVICE_ID,endpointDiscoveryCallback,option)
             .addOnSuccessListener {

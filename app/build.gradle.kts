@@ -54,6 +54,7 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(libs.androidx.junit)
+    implementation("com.google.android.gms:play-services-nearby:19.3.0")
     implementation("androidx.recyclerview:recyclerview")
     implementation("com.google.code.gson:gson:2.11.0")
     implementation("org.osmdroid:osmdroid-android:6.1.20")
