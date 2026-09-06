@@ -50,6 +50,8 @@ class Syncscreen : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_syncscreen)
 
+
+
         connectionsClient= Nearby.getConnectionsClient(this)
         checkPermission()
 
@@ -155,6 +157,12 @@ class Syncscreen : AppCompatActivity() {
             }
     }
 
+    private fun stopNearby(){
+        connectionsClient.stopAdvertising()
+        connectionsClient.stopDiscovery()
+        connectionsClient.stopAllEndpoints()
+    }
+
     private val endpointDiscoveryCallback=object : EndpointDiscoveryCallback(){
         override fun onEndpointFound(p0: String, info: DiscoveredEndpointInfo) {
             nearbyDevice.add(Device(info.endpointName,"Available",p0))
@@ -170,7 +178,10 @@ class Syncscreen : AppCompatActivity() {
     // to stop scanning for device when sync screen closed
     override fun onDestroy() {
         super.onDestroy()
-
+        connectionsClient.stopAdvertising()
+        connectionsClient.stopDiscovery()
+        connectionsClient.stopAllEndpoints()
     }
+
 }
 
