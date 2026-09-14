@@ -15,6 +15,7 @@ import android.bluetooth.BluetoothAdapter
 import android.bluetooth.BluetoothDevice
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.os.Build
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import com.google.android.gms.nearby.Nearby
@@ -70,34 +71,42 @@ class Syncscreen : AppCompatActivity() {
     }
 
     private fun checkPermission(){
-        if (android.os.Build.VERSION.SDK_INT>=android.os.Build.VERSION_CODES.S){
+        if (android.os.Build.VERSION.SDK_INT>=android.os.Build.VERSION_CODES.TIRAMISU){
+            ActivityCompat.requestPermissions(this,arrayOf(Manifest.permission.BLUETOOTH_SCAN,
+                Manifest.permission.BLUETOOTH_ADVERTISE, Manifest.permission.BLUETOOTH_CONNECT,
+                Manifest.permission.NEARBY_WIFI_DEVICES, Manifest.permission.ACCESS_FINE_LOCATION,
+                Manifest.permission.ACCESS_COARSE_LOCATION),100)
+        }
+        else if (Build.VERSION.SDK_INT>= Build.VERSION_CODES.S){
             ActivityCompat.requestPermissions(this,arrayOf(Manifest.permission.BLUETOOTH_SCAN,
                 Manifest.permission.BLUETOOTH_ADVERTISE, Manifest.permission.BLUETOOTH_CONNECT),100)
         }
         else{
-            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)==
-                PackageManager.PERMISSION_GRANTED){
-                startDiscovery()
-                startAdvertising()
-            }else{
-                ActivityCompat.requestPermissions(this,arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),100)
-            }
+            ActivityCompat.requestPermissions(this,arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),100)
         }
-    }
+
+        }
+
 
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<out String>,
         grantResults: IntArray,
-        deviceId: Int
+
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        Toast.makeText(this, " Permission callback", Toast.LENGTH_SHORT).show()
         if (requestCode==100 && grantResults.isNotEmpty()&& grantResults.all{it== PackageManager.PERMISSION_GRANTED }){
-            startDiscovery()
+            Toast.makeText(this, "all Permission granted", Toast.LENGTH_SHORT).show()
+
             startAdvertising()
+            bluetoothIcon.postDelayed({
+                startDiscovery()
+            },1000)
+
         }
         else {
-            Toast.makeText(this, "Please allow all Permission", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, " Permission denied", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -137,10 +146,12 @@ class Syncscreen : AppCompatActivity() {
     private fun startAdvertising(){
         Toast.makeText(this," inside Advertising ", Toast.LENGTH_SHORT).show()
         connectionsClient.startAdvertising(DEVICE_NAME,SERVICE_ID,connectionLifecycleCallback,
-            AdvertisingOptions.Builder().setStrategy(Strategy.P2P_CLUSTER).build()).addOnSuccessListener {
+            AdvertisingOptions.Builder().setStrategy(Strategy.P2P_CLUSTER).build())
+            .addOnSuccessListener {
             Toast.makeText(this,"Advertising Started", Toast.LENGTH_SHORT).show()
         }.addOnFailureListener {e->
             Toast.makeText(this,"Advertising Failed:${e.message}", Toast.LENGTH_SHORT).show()
+            android.util.Log.e("Nearby","Advertising failed",e)
         }
     }
 
